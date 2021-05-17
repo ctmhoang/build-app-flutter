@@ -113,7 +113,7 @@ adb -d shell (or adb -e shell)
 <img src='imgs/02b-Android-Enable-USB-Debugging.webp'/ style='max-width: 50%'/>  <img src='imgs/02c-Android-USB-Debugging-Warning.webp'  style='max-width: 50%'/>
 </div>
 
-###Build an APK for each target ABI (Application Binary Interface)
+### Build an APK for each target ABI (Application Binary Interface)
 
 From the command line:
 
@@ -155,7 +155,7 @@ From the command line:
 
 1. After each run, your apk will be saved in `/system/app` root directory in your phone. So you cannot entirely remove it from your device by simply clicking uninstalling button. To remove it run `adb uninstall <package_name>`.
 
-## IOS (NOT YET SIGNED THE APP WITH DEV ACC TO UPLOAD TO APPSTORE)
+## IOS (NOT YET SIGNED THE APP WITH Bundle ID TO UPLOAD TO APPSTORE)
 
 ### Enable development mode in IOS
 
@@ -163,10 +163,53 @@ From the command line:
    ![](imgs/aid8728373-v4-728px-Enable-Developer-Mode-on-an-iPhone-Step-10.jpeg)
    Select Allow
 
-1. On the macOS machine, select XCode > Window > Organizer.
+1. On the macOS machine, select XCode > Window.
 
 1. Click the Devices tab and select your device. (If your devices are labeled 'unsupported'. Consider upgrade your xcode to latest version)
+
+ ![](imgs/1.png)
 
 1. On your phone check if development option is visible
 
 ![](imgs/aid8728373-v4-728px-Enable-Developer-Mode-on-an-iPhone-Step-12.jpeg)
+
+### Review Xcode project settings and change when needed
+
+* Check your buidle identifier and change it if it conflicts with other packages
+![](imgs/2.png)
+* Check deployment info (IOS version and build target)
+![](imgs/3.png)
+* Check if you are sign-in to xcode or not
+![](imgs/4.png)
+* Review your build profile
+![](imgs/5.png) 
+
+### Build an APP 
+From the command line:
+1. Run
+  ```
+  flutter clean &&
+  rm ios/Podfile.lock pubspec.lock &&
+  rm -rf ios/Pods ios/Runner.xcworkspace
+  ```
+  to clean up flutter cache
+
+2. Run `flutter build ios`
+
+(The flutter build command defaults to --release.)
+
+This command results in one APP files:
+
+```
+[project]/build/app/outputs/release.app
+```
+
+### Or build directly to your phone
+
+From the command line:
+
+1. Connect your IOS device to your computer
+1. Enter cd [project].
+1. Run `flutter run --release`.
+
+   (The flutter run command defaults to --debug.)
