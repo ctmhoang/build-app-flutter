@@ -57,7 +57,7 @@
 
     `nix-shell -p androidenv.androidPkgs_9_0.platform-tools`
 
-Verify your installation by
+Verify your installation by typing on the terminal
 
 `adb --version`
 
@@ -153,7 +153,7 @@ From the command line:
 
    (The flutter run command defaults to --debug.)
 
-1. After each run, your apk will be saved in `/system/app` root directory in your phone. So you cannot entirely remove it from your device by simply clicking uninstalling button. To remove it run `adb uninstall <package_name>`.
+1. After each run, your app will be saved in `/system/app` root directory on your phone. So you cannot entirely remove it from your device by simply clicking uninstalling button. To remove it run `adb uninstall <package_name>`.
 
 ## IOS (NOT YET SIGNED THE APP WITH Bundle ID TO UPLOAD TO APPSTORE)
 
@@ -165,34 +165,45 @@ From the command line:
 
 1. On the macOS machine, select XCode > Window.
 
-1. Click the Devices tab and select your device. (If your devices are labeled 'unsupported'. Consider upgrade your xcode to latest version)
+1. Click the Devices tab and select your device. (If your devices are labeled 'unsupported'. Consider upgrading your Xcode to latest version)
 
- ![](imgs/1.png)
+![](imgs/1.png)
 
-1. On your phone check if development option is visible
+1. On your phone check if the development option is visible
 
 ![](imgs/aid8728373-v4-728px-Enable-Developer-Mode-on-an-iPhone-Step-12.jpeg)
 
 ### Review Xcode project settings and change when needed
 
-* Check your buidle identifier and change it if it conflicts with other packages
-![](imgs/2.png)
-* Check deployment info (IOS version and build target)
-![](imgs/3.png)
-* Check if you are sign-in to xcode or not
-![](imgs/4.png)
-* Review your build profile
-![](imgs/5.png) 
+- Check your bundle identifier and change it if it conflicts with other packages
 
-### Build an APP 
+  ![](imgs/2.png)
+
+- Verify deployment info (IOS version and build target)
+
+  ![](imgs/3.png)
+
+- Examine if you are sign-in to Xcode or not
+
+  ![](imgs/4.png)
+
+- Review your build profile
+
+  ![](imgs/5.png)
+
+### Build an APP file
+
 From the command line:
+
 1. Run
-  ```
-  flutter clean &&
-  rm ios/Podfile.lock pubspec.lock &&
-  rm -rf ios/Pods ios/Runner.xcworkspace
-  ```
-  to clean up flutter cache
+
+```
+flutter clean &&
+rm ios/Podfile.lock pubspec.lock &&
+rm -rf ios/Pods ios/Runner.xcworkspace
+```
+
+to clean up flutter caches
 
 2. Run `flutter build ios`
 
